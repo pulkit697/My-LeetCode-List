@@ -1,6 +1,7 @@
 // https://leetcode.com/problems/merge-sorted-array/
 // Time O(nlogn)
 // Space O(1)
+// Way 1 => swap in size of k
 class Solution {
     void swapper(vector<int>&a,int m,vector<int>&b,int n,int k)
     {
@@ -35,7 +36,7 @@ class Solution {
         if(k<=1)    return 0;
         return (k+1)/2;
     }
-public:
+    public:
     void merge(vector<int>& a, int m, vector<int>& b, int n) {
         int i = m-1;
         int j = n-1;
@@ -46,4 +47,19 @@ public:
             a[i+m]=b[i];
         }
     }
+};
+
+// Way 2 => arr1 ke sabhi wo bade arr2 mi daal do jo arr2 ke minimum element se bade hai
+class Solution{
+    public:
+        void merge(long long arr1[], long long arr2[], int n, int m) 
+        { 
+            int i = n-1;
+            int j = 0;
+            while(i>=0 && j<m && arr1[i]>arr2[j]){
+                swap(arr1[i--],arr2[j++]);
+            }
+            sort(arr1,arr1+n);
+            sort(arr2,arr2+m);
+        } 
 };
